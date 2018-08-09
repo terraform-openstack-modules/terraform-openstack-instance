@@ -9,7 +9,7 @@ resource "openstack_compute_instance_v2" "vm" {
     name          = "${var.network}"
     fixed_ip_v4   = "${element(var.fixed_ip_v4,count.index)}"
   }
-  security_groups = [ "${element(openstack_networking_secgroup_v2.sg.*.name,count.index)}",
+  security_groups = [ 
                       "${var.secgroup_id}" 
                     ]
   user_data       = "${element(data.template_file.puppet-userdata.*.rendered,count.index)}"
