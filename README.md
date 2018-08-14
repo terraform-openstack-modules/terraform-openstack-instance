@@ -1,5 +1,5 @@
 # Objetivo
-Este módulo tem por objetivo o reaproveitamento do código e a padronização no provisionamento de instâncias em nossa cloud privada.
+Este módulo tem por objetivo o reaproveitamento do código e a padronização no provisionamento de instâncias no Openstack.
 
 ## Requisitos
 Foram considerados os seguintes itens para a construção de instâncias:
@@ -13,17 +13,13 @@ Foram considerados os seguintes itens para a construção de instâncias:
 8. Template
   
 ### Observações: 
-<pre> 
-1. Fixed_ip_v4: esse parâmetro caso não mencionado será considerado endereço por DHCP na interface da instância.`
+<pre> 1. Fixed_ip_v4: esse parâmetro caso não mencionado será considerado endereço por DHCP 
+na interface da instância.`
 2. Template: esse parâmetro é reservado para utilização do Puppet.
   2.1. Env: Ambiente que será associada instância ao Foreman, por exemplo: TST, TIT, HOM e PRD.
   2.2. Puppet_server: Hostname do servidor puppet master.
   2.3. Puppet_ip: Endereço IP do servidor puppet master.
 </pre>
-
-3. Template.
-3.1. Este requisito aborda a instalação do agente puppet, bem como a configuração inicial do mesmo.
-
 
 ## Exemplos:
 ### Definição de uma instância
