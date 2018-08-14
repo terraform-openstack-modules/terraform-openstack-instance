@@ -25,7 +25,7 @@ na interface da instância.
 ### Definição de uma instância
 
 <pre>
-module "instance" {
+module "frontend-instance" {
   source        = "terraform-openstack-modules/instance/openstack"
   version       = "0.0.1"
   count         = "1"
@@ -35,7 +35,7 @@ module "instance" {
   key_pair      = "host-key"
   flavor        = "small-1"
   fixed_ip_v4   = ["192.168.0.10"]
-  secgroup_id   = ["${module.instance-sg.id}"]
+  secgroup_id   = ["${module.frontend-sg.id}"]
   env           = "hom"
   puppet_server = "puppet-master.localdomain"
   puppet_ip     = "172.16.15.30"
@@ -44,7 +44,7 @@ module "instance" {
 
 ### Definição de uma váriavel para organização das regras de security group.
 <pre>
-variable "instance-rules-sg" {
+variable "frontend-rules-sg" {
     default = [
       {
         port_range_min   = 22
@@ -66,11 +66,11 @@ variable "instance-rules-sg" {
 
 ### Definição de um security group
 <pre>
-module "instance-sg" {
+module "frontend-sg" {
   source              = "terraform-openstack-modules/securitygroup/openstack"
   version             = "0.0.1"
   securitygroup_name  = "Instance - secgroup"
   securitygroup_desc  = "Instance security group project"
-  securitygroup_rules = ${instance-rules-sg}
+  securitygroup_rules = ${frontend-rules-sg}
 }
 </pre>
