@@ -1,7 +1,7 @@
-output "instance_id" {
+output "id" {
   value = "${openstack_compute_instance_v2.vm.*.id}"
 }
 
-output "instance_name" {
+output "name" {
   value = "${openstack_compute_instance_v2.vm.*.name}"
 }

@@ -38,11 +38,6 @@ variable "image" {
   default = "CentOS-7"
 }
 
-variable "size" {
-  type    = "string"
-  default = "30"
-}
-
 variable "secgroup_id" {
   type    = "list"
   default = []
