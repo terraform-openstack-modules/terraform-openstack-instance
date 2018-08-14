@@ -14,7 +14,7 @@ Foram considerados os seguintes itens para a construção de instâncias:
   
 ### Observações: 
 <pre> 1. Fixed_ip_v4: esse parâmetro caso não mencionado será considerado endereço por DHCP 
-na interface da instância.`
+na interface da instância.
 2. Template: esse parâmetro é reservado para utilização do Puppet.
   2.1. Env: Ambiente que será associada instância ao Foreman, por exemplo: TST, TIT, HOM e PRD.
   2.2. Puppet_server: Hostname do servidor puppet master.
@@ -57,7 +57,7 @@ variable "instance-rules-sg" {
       {
         port_range_min   = 0
         port_range_max   = 0
-        protocol         = "tcp"
+        protocol         = "icmp"
         ethertype        = "IPv4"
         direction        = "ingress"
         remote_ip_prefix = "0.0.0.0/0"
