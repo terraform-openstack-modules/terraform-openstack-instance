@@ -49,6 +49,11 @@ variable "fixed_ip_v4" {
 }
 
 variable "region" {
+  type    = "string"
+  default = ""
+}
+
+variable "availability_zone" {
   type    = "list"
   default = [""]
 }

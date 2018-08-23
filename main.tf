@@ -1,18 +1,19 @@
 resource "openstack_compute_instance_v2" "vm" {
-  count           = "${var.count}"
-  name            = "${var.hostname}${format("%02d", count.index+1)}.${var.dns}"
-  region          = "${element(var.region,count.index)}"
-  flavor_name     = "${var.flavor}"
-  image_name      = "${var.image}"
-  key_pair        = "${var.key_pair}"
-  network         = {
-    name          = "${var.network}"
-    fixed_ip_v4   = "${element(var.fixed_ip_v4,count.index)}"
+  count             = "${var.count}"
+  name              = "${var.hostname}${format("%02d", count.index+1)}.${var.dns}"
+  region            = "${var.region}"
+  availability_zone = "${element(var.availability_zone,count.index)}"
+  flavor_name       = "${var.flavor}"
+  image_name        = "${var.image}"
+  key_pair          = "${var.key_pair}"
+  network           = {
+    name            = "${var.network}"
+    fixed_ip_v4     = "${element(var.fixed_ip_v4,count.index)}"
   }
-  security_groups = [ 
+  security_groups   = [ 
                       "${var.secgroup_id}" 
-                    ]
-  user_data       = "${element(data.template_file.puppet-userdata.*.rendered,count.index)}"
+                      ]
+  user_data         = "${element(data.template_file.puppet-userdata.*.rendered,count.index)}"
 }
 
 data "template_file" "puppet-userdata" {
