@@ -3,14 +3,17 @@ Este módulo tem por objetivo o reaproveitamento do código e a padronização n
 
 ## Requisitos
 Foram considerados os seguintes itens para a construção de instâncias:
-1. Hostname.
-2. DNS.
-3. Network.
-4. Key_pair.
-5. Flavor.
-6. Fixed_ip_v4.
-7. Secgroup_id.
-8. Template
+<pre>
+1. Count.
+2. Hostname.
+3. DNS.
+4. Network.
+5. Key_pair.
+6. Flavor.
+7. Fixed_ip_v4.
+8. Secgroup_id.
+9. Template.
+</pre>
   
 ### Observações: 
 <pre> 1. Fixed_ip_v4: esse parâmetro caso não mencionado será considerado endereço por DHCP 
@@ -25,7 +28,7 @@ na interface da instância.
 ### Definição de uma instância
 
 <pre>
-module "frontend-instance" {
+<b>module "frontend-instance"</b> {
   source        = "terraform-openstack-modules/instance/openstack"
   version       = "0.0.1"
   count         = "1"
@@ -35,7 +38,7 @@ module "frontend-instance" {
   key_pair      = "host-key"
   flavor        = "small-1"
   fixed_ip_v4   = ["192.168.0.10"]
-  secgroup_id   = ["${module.frontend-sg.id}"]
+  secgroup_id   = <b>["${module.frontend-sg.id}"]</b>
   env           = "hom"
   puppet_server = "puppet-master.localdomain"
   puppet_ip     = "172.16.15.30"
@@ -44,7 +47,7 @@ module "frontend-instance" {
 
 ### Definição de uma váriavel para organização das regras de security group.
 <pre>
-variable "frontend-rules-sg" {
+<b>variable "frontend-rules-sg"</b> {
     default = [
       {
         port_range_min   = 22
@@ -68,11 +71,11 @@ variable "frontend-rules-sg" {
 
 ### Definição de um security group
 <pre>
-module "frontend-sg" {
+<b>module "frontend-sg"</b> {
   source              = "terraform-openstack-modules/securitygroup/openstack"
   version             = "0.0.1"
   securitygroup_name  = "Instance - secgroup"
   securitygroup_desc  = "Instance security group project"
-  securitygroup_rules = ${frontend-rules-sg}
+  securitygroup_rules = <b>"${frontend-rules-sg}"</b>
 }
 </pre>
