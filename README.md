@@ -76,6 +76,6 @@ na interface da instância.
   version     = "0.0.1"
   name        = "Instance - secgroup"
   description = "Instance security group project"
-  rules       = <b>"${frontend-rules-sg}"</b>
+  rules       = <b>"${var.frontend-rules-sg}"</b>
 }
 </pre>
