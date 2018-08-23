@@ -72,10 +72,10 @@ na interface da instância.
 ### Definição de um security group
 <pre>
 <b>module "frontend-sg"</b> {
-  source              = "terraform-openstack-modules/securitygroup/openstack"
-  version             = "0.0.1"
-  securitygroup_name  = "Instance - secgroup"
-  securitygroup_desc  = "Instance security group project"
-  securitygroup_rules = <b>"${frontend-rules-sg}"</b>
+  source   = "terraform-openstack-modules/securitygroup/openstack"
+  version  = "0.0.1"
+  name     = "Instance - secgroup"
+  desc     = "Instance security group project"
+  rules    = <b>"${frontend-rules-sg}"</b>
 }
 </pre>
