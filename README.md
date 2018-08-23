@@ -62,6 +62,8 @@ variable "frontend-rules-sg" {
         direction        = "ingress"
         remote_ip_prefix = "0.0.0.0/0"
       }
+   ]
+}
 </pre>
 
 ### Definição de um security group
