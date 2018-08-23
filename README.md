@@ -13,6 +13,7 @@ Foram considerados os seguintes itens para a construção de instâncias:
 7. Fixed_ip_v4.
 8. Secgroup_id.
 9. Template.
+10. Availability_zone.
 </pre>
   
 ### Observações: 
@@ -29,19 +30,20 @@ na interface da instância.
 
 <pre>
 <b>module "frontend-instance"</b> {
-  source        = "terraform-openstack-modules/instance/openstack"
-  version       = "0.0.1"
-  count         = "1"
-  hostname      = "frontend-srv"
-  dns           = "localdomain"
-  network       = "privatenetwork"
-  key_pair      = "host-key"
-  flavor        = "small-1"
-  fixed_ip_v4   = ["192.168.0.10"]
-  secgroup_id   = <b>["${module.frontend-sg.id}"]</b>
-  env           = "hom"
-  puppet_server = "puppet-master.localdomain"
-  puppet_ip     = "172.16.15.30"
+  source            = "terraform-openstack-modules/instance/openstack"
+  version           = "0.0.3"
+  count             = "1"
+  availability_zone = ["zone-236-decimo"]
+  hostname          = "frontend-srv"
+  dns               = "localdomain"
+  network           = "privatenetwork"
+  key_pair          = "host-key"
+  flavor            = "small-1"
+  fixed_ip_v4       = ["192.168.0.10"]
+  secgroup_id       = <b>["${module.frontend-sg.id}"]</b>
+  env               = "hom"
+  puppet_server     = "puppet-master.localdomain"
+  puppet_ip         = "172.16.15.30"
 }
 </pre>
 
@@ -73,7 +75,7 @@ na interface da instância.
 <pre>
 <b>module "frontend-sg"</b> {
   source      = "terraform-openstack-modules/securitygroup/openstack"
-  version     = "0.0.1"
+  version     = "0.0.2"
   name        = "Instance - secgroup"
   description = "Instance security group project"
   rules       = <b>"${var.frontend-rules-sg}"</b>
