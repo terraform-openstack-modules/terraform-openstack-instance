@@ -7,6 +7,6 @@ bootcmd:
 
 runcmd:
   - echo -e "[main]\nserver = ${puppet_server}\n" >> /etc/puppetlabs/puppet/puppet.conf
-  - echo -e "[agent]\ncertname = ${hostname}\nenvironment = tst\n" >> /etc/puppetlabs/puppet/puppet.conf
+  - echo -e "[agent]\ncertname = ${hostname}\nenvironment = ${env}\n" >> /etc/puppetlabs/puppet/puppet.conf
   - /opt/puppetlabs/bin/puppet agent -t --server ${puppet_server} --environment ${env}
   - /bin/systemctl start puppet
