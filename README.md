@@ -31,7 +31,7 @@ na interface da instância.
 <pre>
 <b>module "frontend-instance"</b> {
   source            = "terraform-openstack-modules/instance/openstack"
-  version           = "0.0.3"
+  version           = "0.0.4"
   count             = "1"
   availability_zone = ["zone-236-decimo"]
   hostname          = "frontend-srv"
