@@ -26,6 +26,7 @@ resource "openstack_compute_instance_v2" "vm" {
 
 }
 
+
 data "openstack_images_image_v2" "image" {
   name = "${var.image}"
   most_recent = true
