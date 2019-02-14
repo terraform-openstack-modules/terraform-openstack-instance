@@ -36,7 +36,8 @@ na interface da instância.
   availability_zone = ["zone-236-decimo"]
   hostname          = "frontend-srv"
   dns               = "localdomain"
-  network           = "privatenetwork"
+  network           = "${var.tenant_network}"
+  image             = "CentOS 7.5.1804"
   key_pair          = "host-key"
   flavor            = "small-1"
   fixed_ip_v4       = ["192.168.0.10"]
