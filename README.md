@@ -31,7 +31,7 @@ na interface da instância.
 <pre>
 <b>module "frontend-instance"</b> {
   source            = "terraform-openstack-modules/instance/openstack"
-  version           = "0.0.4"
+  version           = "1.0.0"
   count             = "1"
   availability_zone = ["zone-236-decimo"]
   hostname          = "frontend-srv"
@@ -45,6 +45,7 @@ na interface da instância.
   env               = "hom"
   puppet_server     = "puppet-master.localdomain"
   puppet_ip         = "172.16.15.30"
+  <b>volume_size    = "30" </b>
 }
 </pre>
 
