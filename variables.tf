@@ -58,6 +58,11 @@ variable "availability_zone" {
   default = [""]
 }
 
+variable "volume_size" {
+  type    = "string"
+  default = "30"
+}
+
 variable "puppet_server" {
   type    = "string"
   default = "puppet_server"

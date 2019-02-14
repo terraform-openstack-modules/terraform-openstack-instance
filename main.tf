@@ -14,7 +14,27 @@ resource "openstack_compute_instance_v2" "vm" {
                       "${var.secgroup_id}" 
                       ]
   user_data         = "${element(data.template_file.puppet-userdata.*.rendered,count.index)}"
+
+  block_device {
+    uuid                  = "${data.openstack_images_image_v2.image.id}"
+    source_type           = "image"
+    volume_size           = "${var.volume_size}"
+    boot_index            = 0
+    destination_type      = "volume"
+    delete_on_termination = true
+  }
+
 }
+
+data "openstack_images_image_v2" "image" {
+  name = "${var.image}"
+  most_recent = true
+
+  properties = {
+    key = "value"
+  }
+}
+
 
 data "template_file" "puppet-userdata" {
   count           = "${var.count}"
