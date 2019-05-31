@@ -13,7 +13,7 @@ resource "openstack_compute_instance_v2" "vm" {
   security_groups   = [ 
                       "${var.secgroup_id}" 
                       ]
-  user_data         = "${element(data.template_file.puppet-userdata.*.rendered,count.index)}"
+  user_data         = "${var.user_data}"
 
   block_device {
     uuid                  = "${data.openstack_images_image_v2.image.id}"
@@ -26,7 +26,6 @@ resource "openstack_compute_instance_v2" "vm" {
 
 }
 
-
 data "openstack_images_image_v2" "image" {
   name = "${var.image}"
   most_recent = true
@@ -35,7 +34,6 @@ data "openstack_images_image_v2" "image" {
     key = "value"
   }
 }
-
 
 data "template_file" "puppet-userdata" {
   count           = "${var.count}"

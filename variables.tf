@@ -72,3 +72,8 @@ variable "puppet_ip" {
   type    = "string"
   default = "127.0.0.1" 
 }
+
+variable "user_data" {
+  type    = "string"
+  default = "data.template_file.puppet-userdata.rendered"
+}
